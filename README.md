@@ -1,4 +1,4 @@
 # LearnPython
 
-1. Image For Loop
+1. [[Image For Loop]]
    
