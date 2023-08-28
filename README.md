@@ -1,5 +1,5 @@
 # LearnPython
 
-1. [Image Processing](/pages/ImageProcessing.md)
+1. [Image Processing](/pages/imageProcessing.md)
 
    
