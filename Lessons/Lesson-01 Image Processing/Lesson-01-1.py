@@ -3,7 +3,6 @@
 
 # Import the necessary packages
 from PIL import Image
-import numpy as np
 
 # Open the image file name "bird.jpg" from the subfolder "Lessons\Lesson-01 Image Processing"
 image=Image.open("Lessons\\Lesson-01 Image Processing\\bird.jpg")
