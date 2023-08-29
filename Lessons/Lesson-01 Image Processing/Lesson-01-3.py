@@ -21,6 +21,7 @@ rgb_array = []
 for pixel in pixel_data:
     r, g, b = pixel
     grayscale_value = int(0.2989 * r + 0.5870 * g + 0.1140 * b)
+    # https://www.baeldung.com/cs/convert-rgb-to-grayscale
     # 0.2989: This coefficient corresponds to the red channel. It's relatively low because the human eye is less sensitive to red than it is to green and blue.
     # 0.5870: This coefficient corresponds to the green channel. It's higher because the human eye is most sensitive to green colors.
     # 0.1140: This coefficient corresponds to the blue channel. It's relatively low because, similar to the red channel, the human eye is less sensitive to blue than to green.
