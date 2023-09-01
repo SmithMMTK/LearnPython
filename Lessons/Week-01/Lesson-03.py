@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Open the image file name "bird.jpg" from the subfolder "Lessons\Lesson-01 Image Processing"
-image=Image.open("Lessons\\Lesson-01 Image Processing\\bird.jpg")
+image=Image.open("Lessons/images/bird.jpg")
 
 # Get the pixel value of the image
 pixel_data = list(image.getdata())
