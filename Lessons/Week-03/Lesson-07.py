@@ -6,6 +6,7 @@
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
+import datetime
 
 # Open the image file name "bird.jpg" from the subfolder "Lessons\Lesson-01 Image Processing"
 image=Image.open("Lessons\images\ironman-green.jpg")
@@ -14,6 +15,8 @@ background=Image.open("Lessons\images\sky-background.jpg")
 #image=Image.open("Lessons\images\green.jpg")
 #background=Image.open("Lessons\images\\blue.jpg")
 
+# Get start date and time into variable
+start_time = datetime.datetime.now()
 
 # Get the pixel value of the image
 pixel_data = list(image.getdata())
@@ -48,7 +51,7 @@ for pixel in pixel_data:
 
     # get total pixel_data to calculate the progress in percentage in interger
     total = len(pixel_data)
-    progress = (i + 1) / total * 100
+    progress = (i) / total * 100
 
     # print progress in percentage in interger in same line for replacement of previous progress value in same line
     print(f"\rProgress: {progress:.2f}%", end="")
@@ -57,6 +60,15 @@ for pixel in pixel_data:
     #print(f"\processing pixel: {i} of {total}", end="")
           
    # print(f"\rProgress: [{'.' * int(progress // 10)}{' ' * (10 - int(progress // 10))}] {progress:.1f}%", end="")
+
+# Get end date and time into variable
+end_time = datetime.datetime.now()
+
+# Calculate the time difference between start and end time
+time_diff = end_time - start_time
+
+# Print the time difference in seconds
+print(f"\nProcessing time: {time_diff.seconds} seconds")
 
 # Convert the rgb_array to a NumPy array
 rgb_array = np.array(rgb_array, dtype=np.uint8)
