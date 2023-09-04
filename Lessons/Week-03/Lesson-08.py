@@ -10,7 +10,8 @@ import datetime
 
 # Open the image file name "bird.jpg" from the subfolder "Lessons\Lesson-01 Image Processing"
 image=Image.open("Lessons\images\ironman-green.jpg")
-background=Image.open("Lessons\images\sky-background.jpg")
+#background=Image.open("Lessons\images\\avenger-tower.jpg")
+background=Image.open("Lessons\images\\sky-background.jpg")
 
 #image=Image.open("Lessons\images\green.jpg")
 #background=Image.open("Lessons\images\\blue.jpg")
@@ -76,7 +77,7 @@ def adjust_rgb_with_green(rgb_array, rgb_array_background):
             if r == 20 and g == 253 and b == 74:
                 rgb_array[i][j] = rgb_array_background[i][j]
 
-            elif g > 200:
+            elif g > 160:
                 rgb_array[i][j] = rgb_array_background[i][j]
             else:
                 rgb_array[i][j] = (r, g, b)
