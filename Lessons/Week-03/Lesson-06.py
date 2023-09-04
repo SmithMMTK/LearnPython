@@ -1,6 +1,6 @@
 
 # Read jpg image and get R, G, B pixel value of the image and store in 2 dimensional array
-# Create high pass filtering effect
+# Remove the green background and replace with space background
 
 # Import the necessary packages
 from PIL import Image
