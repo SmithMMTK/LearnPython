@@ -1,52 +1,62 @@
+
+# Read jpg image and get R, G, B pixel value of the image and store in 2 dimensional array
+# Create high pass filtering effect
+
 # Import the necessary packages
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Open the image file
-# image=Image.open("Lessons\\Lesson-01 Image Processing\\bird.jpg")
-image = Image.open("Lessons\\images\\bird small.jpg")
+# Open the image file name "bird.jpg" from the subfolder "Lessons\Lesson-01 Image Processing"
+image=Image.open("Lessons\images\ironman-green.jpg")
+background=Image.open("Lessons\images\sky-background.jpg")
+
+#image=Image.open("Lessons\images\green.jpg")
+#background=Image.open("Lessons\images\\blue.jpg")
+
 
 # Get the pixel value of the image
 pixel_data = list(image.getdata())
+pixel_background = list(background.getdata())
 
 # Create an empty array to store RGB values
 rgb_array = []
 
-# Adjust the RGB values of each pixel with the minimum RGB values of its neighbors
-def adjust_rgb_with_neighbors(pixel_data):
-    processed_data = []
-    total_pixels = len(pixel_data)
-
-    for i in range(len(pixel_data)):
-        if i < 5 or i >= len(pixel_data) - 5:
-            processed_data.append(pixel_data[i])  # Keep edge pixels unchanged
-        else:
-            min_r = min(pixel[0] for pixel in pixel_data[i - 5 : i + 6])
-            min_g = min(pixel[1] for pixel in pixel_data[i - 5 : i + 6])
-            min_b = min(pixel[2] for pixel in pixel_data[i - 5 : i + 6])
-            
-            new_pixel = (
-                int(min_r),
-                int(min_g),
-                int(min_b)
-            )
-
-            # Calculate progress percentage and print dots
-            progress = (i + 1) / total_pixels * 100
-            print(f"\rProgress: [{'.' * int(progress // 10)}{' ' * (10 - int(progress // 10))}] {progress:.1f}%", end="")
-
-            processed_data.append(new_pixel)
-
-    return processed_data
-
-# Adjust the RGB values of each pixel with the minimum RGB values of its neighbors
-process_pixel_data = adjust_rgb_with_neighbors(pixel_data)
+i = -1
 
 # Iterate through each pixel's RGB values and store in the array
-for pixel in process_pixel_data:
+for pixel in pixel_data:
     r, g, b = pixel
+
+    # rgb(20, 253, 74)
+    # Detect rgb(20, 253, 74) from pixcel data and set it to black
+    if r == 20 and g == 253 and b == 74:
+        # if this condition is meet, get the pixel value from the background image in same position
+        #r, g, b = pixel_background[pixel_data.index(pixel)]
+        r, g, b = pixel_background[i]
+
+    if g > 200:
+       # if this condition is meet, get the pixel value from the background image in same position
+        #r, g, b = pixel_background[pixel_data.index(pixel)]
+        r, g, b = pixel_background[i]
+
+
     rgb_array.append((r, g, b))
+
+     # Get index value of the current pixel
+    i = i + 1
+
+    # get total pixel_data to calculate the progress in percentage in interger
+    total = len(pixel_data)
+    progress = (i + 1) / total * 100
+
+    # print progress in percentage in interger in same line for replacement of previous progress value in same line
+    print(f"\rProgress: {progress:.2f}%", end="")
+
+
+    #print(f"\processing pixel: {i} of {total}", end="")
+          
+   # print(f"\rProgress: [{'.' * int(progress // 10)}{' ' * (10 - int(progress // 10))}] {progress:.1f}%", end="")
 
 # Convert the rgb_array to a NumPy array
 rgb_array = np.array(rgb_array, dtype=np.uint8)

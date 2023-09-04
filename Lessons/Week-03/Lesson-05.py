@@ -8,7 +8,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Open the image file name "bird.jpg" from the subfolder "Lessons\Lesson-01 Image Processing"
-image=Image.open("Lessons/images/bird.jpg")
+
+mage=Image.open("Lessons/images/bird.jpg")
 
 # Get the pixel value of the image
 pixel_data = list(image.getdata())
@@ -36,7 +37,6 @@ for pixel in pixel_data:
         b = 0
     else:
         b = b
-
 
     rgb_array.append((r, g, b))
 
