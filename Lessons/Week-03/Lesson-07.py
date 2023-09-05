@@ -105,6 +105,6 @@ def adjust_rgb_with_green(rgb_array, rgb_array_background):
 process_pixel_data = adjust_rgb_with_green(rgb_array,rgb_array_background)
 
 # Display the image using matplotlib
-plt.imshow(rgb_array)
+plt.imshow(process_pixel_data)
 plt.axis('off')  # Turn off axis labels and ticks
 plt.show()

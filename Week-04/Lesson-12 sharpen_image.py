@@ -1,3 +1,5 @@
+# Basic image sharpening concept
+
 import numpy as np
 
 def sharpen_image(rgb_array):
