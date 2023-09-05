@@ -46,7 +46,21 @@ rgb_array = rgb_array.reshape(height, width, 3)
 ########################################
 def template_function(rgb_array):
     processed_data = []
-    total_pixels = len(rgb_array) * len(rgb_array[0])
+
+    # Create 3 x 3 kernel for sharpening
+    kernel = [[-1, -1, -1],
+              [-1,  9, -1],
+              [-1, -1, -1]]
+
+    # Get the width and height of the image
+    width = len(rgb_array[0])
+    height = len(rgb_array)
+
+    # Create an empty array to store the sharpened image
+    sharpened_image = np.zeros((height, width, 3), dtype=np.uint8)
+
+
+    total_pixels = width * height
     print("Processing ", total_pixels, " pixels")
 
     # Get start date and time into variable
@@ -54,29 +68,31 @@ def template_function(rgb_array):
 
     # Loop through width and height of the image
     processed_pixel = 0
-    for i in range(len(rgb_array)):
-        for j in range(len(rgb_array[i])):
-            # Get the RGB value of the pixel
-            r, g, b = rgb_array[i][j]
 
-            
+    # Apply the sharpening filter
+    for y in range(1, height - 1):
+        for x in range(1, width - 1):
+            for c in range(3):  # Loop through RGB channels
+                value = 0
+                for ky in range(3):
+                    for kx in range(3):
+                        value += rgb_array[y + ky - 1][x + kx - 1][c] * kernel[ky][kx]
+                sharpened_image[y][x][c] = max(0, min(value, 255))
             # Calculate the progress in percentage in interger
             processed_pixel = processed_pixel + 1
-
-            # Print process in percentage in interger in same line for replacement of previous progress value in same line
+             # Print process in percentage in interger in same line for replacement of previous progress value in same line
             progress = processed_pixel / total_pixels * 100
             print(f"\rProgress: {progress:.2f}%", end="")
-    
+
     # Get end date and time into variable
     end_time = datetime.datetime.now()
-
-    # Calculate the time difference between start and end time
+        # Calculate the time difference between start and end time
     time_diff = end_time - start_time
 
     # Print the time difference in seconds
     print(f"\nProcessing time: {time_diff.seconds} seconds")
 
-    return rgb_array
+    return sharpened_image
 
 
 process_pixel_data = template_function(rgb_array)
