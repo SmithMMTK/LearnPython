@@ -1,6 +1,6 @@
 import numpy as np
 
-def template_function(rgb_array):
+def sharpen_image(rgb_array):
     processed_data = []
 
     # Create 3 x 3 kernel for sharpening
@@ -26,6 +26,22 @@ def template_function(rgb_array):
                 sharpened_image[y][x][c] = max(0, min(value, 255))
 
     return sharpened_image
+
+# Generate a 20x20 RGB array for debugging
+width = 20
+height = 20
+rgb_array = np.zeros((height, width, 3), dtype=np.uint8)
+
+# Fill the array with random RGB values
+for y in range(height):
+    for x in range(width):
+        rgb_array[y, x, 0] = np.random.randint(0, 256)  # Red channel
+        rgb_array[y, x, 1] = np.random.randint(0, 256)  # Green channel
+        rgb_array[y, x, 2] = np.random.randint(0, 256)  # Blue channel
+
+print("Generated RGB Array:")
+processed_data = sharpen_image(rgb_array)
+
 
 
 '''

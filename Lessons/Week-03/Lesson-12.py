@@ -44,7 +44,7 @@ rgb_array = rgb_array.reshape(height, width, 3)
 ########################################
 # Function Template
 ########################################
-def template_function(rgb_array):
+def sharpenImage(rgb_array):
     processed_data = []
 
     # Create 3 x 3 kernel for sharpening
@@ -95,7 +95,7 @@ def template_function(rgb_array):
     return sharpened_image
 
 
-process_pixel_data = template_function(rgb_array)
+process_pixel_data = sharpenImage(rgb_array)
 
 # Display the image using matplotlib
 plt.imshow(process_pixel_data)
