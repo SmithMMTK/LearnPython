@@ -10,9 +10,14 @@ import matplotlib.pyplot as plt
 import datetime
 
 # Open the image file name "bird.jpg" from the subfolder "Lessons\Lesson-01 Image Processing"
-image=Image.open("Lessons\images\ironman-green.jpg")
+#image=Image.open("Lessons\images\ironman-green.jpg")
 #background=Image.open("Lessons\images\\avenger-tower.jpg")
-background=Image.open("Lessons\images\\sky-background.jpg")
+#background=Image.open("Lessons\images\\sky-background.jpg")
+
+image=Image.open("Lessons/images/ironman-green.jpg")
+#background=Image.open("Lessons\images\\avenger-tower.jpg")
+background=Image.open("Lessons/images/sky-background.jpg")
+
 
 #image=Image.open("Lessons\images\green.jpg")
 #background=Image.open("Lessons\images\\blue.jpg")
