@@ -44,89 +44,56 @@ rgb_array = rgb_array.reshape(height, width, 3)
 ########################################
 # Function Template
 ########################################
-def gethistogram(rgb_array, color):
-
-    if color not in ['r', 'g', 'b']:
-        raise ValueError("Invalid color parameter. Use 'r', 'g', or 'b'.")
-
-    # Create histogram array with 256 elements and initialize with 0
+def get_histogram(rgb_array):
+    # Create a histogram array with 256 elements and initialize with 0
     histogram = np.zeros(256, dtype=np.uint32)
 
     total_pixels = len(rgb_array) * len(rgb_array[0])
-    print("Processing ", total_pixels, " pixels")
 
-    # Get start date and time into variable
+    # Get start date and time into a variable
     start_time = datetime.datetime.now()
 
-    # Loop through width and height of the image
-    processed_pixel = 0
+    # Loop through the width and height of the image
     for i in range(len(rgb_array)):
         for j in range(len(rgb_array[i])):
             # Get the RGB value of the pixel
             r, g, b = rgb_array[i][j]
 
-            if color == 'r':
-                histogram[r] = histogram[r] + 1
-            elif color == 'g':
-                histogram[g] = histogram[g] + 1
-            elif color == 'b':
-                histogram[b] = histogram[b] + 1
-            
-            # Calculate the progress in percentage in interger
-            processed_pixel = processed_pixel + 1
+            # Calculate brightness using the formula
+            brightness = int(0.299 * r + 0.587 * g + 0.114 * b)
 
-            # Print process in percentage in interger in same line for replacement of previous progress value in same line
-            progress = processed_pixel / total_pixels * 100
-            print(f"\rProgress: {color} : {progress:.2f}%", end="")
-    
-    # Get end date and time into variable
+            # Increment the corresponding bin in the histogram
+            histogram[brightness] += 1
+
+    # Get end date and time into a variable
     end_time = datetime.datetime.now()
 
     # Calculate the time difference between start and end time
     time_diff = end_time - start_time
 
     # Print the time difference in seconds
-    print(f"\nProcessing time: {time_diff.seconds} seconds")
+    print(f"Processing time: {time_diff.seconds} seconds")
 
     return histogram
 
 
-processed_histogram_red = gethistogram(rgb_array,'r')
-processed_histogram_green = gethistogram(rgb_array,'g')
-processed_histogram_blue = gethistogram(rgb_array,'b')
+processed_histogram = get_histogram(rgb_array)
+
 
 # Display the image using matplotlib
-plt.subplot(1, 4, 1)
+plt.subplot(1, 2, 1)
 plt.imshow(rgb_array)
 plt.axis('off')  # Turn off axis labels and ticks
 
 
 # Display the image histogram using matplotlib
-plt.subplot(1, 4, 2)
+plt.subplot(1, 2, 2)
 # Create histogram graph from processed_histogram_data
-plt.hist(processed_histogram_red, bins=256, range=(0, 256), color='red', alpha=0.4)
+#plt.hist(processed_histogram_red, bins=30, range=(0, 30), color='red', alpha=0.4)
+
+# Create histogram graph 0 - 30 from processed_histogram_red data
+plt.hist(processed_histogram, bins=256, range=(0, 256), color='red', alpha=0.4)
 plt.title('Histogram Red')
-plt.xlabel('Color value')
-plt.ylabel('Pixels')
-plt.xlim([0, 256])
-
-
-# Display the image histogram using matplotlib
-plt.subplot(1, 4, 3)
-
-# Create histogram graph from processed_histogram_data
-plt.hist(processed_histogram_green, bins=256, range=(0, 256), color='green', alpha=0.4)
-plt.title('Histogram Green')
-plt.xlabel('Color value')
-plt.ylabel('Pixels')
-plt.xlim([0, 256])
-
-# Display the image histogram using matplotlib
-plt.subplot(1, 4, 4)
-
-# Create histogram graph from processed_histogram_data
-plt.hist(processed_histogram_blue, bins=256, range=(0, 256), color='blue', alpha=0.4)
-plt.title('Histogram Blue')
 plt.xlabel('Color value')
 plt.ylabel('Pixels')
 plt.xlim([0, 256])
