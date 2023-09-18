@@ -7,9 +7,13 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime
+import os
+
+# Define the path of the image file
+image_path = os.path.join("Lessons","images", "bird.jpg")
 
 # Open the image file name "bird.jpg" from the subfolder "Lessons\Lesson-01 Image Processing"
-image=Image.open("Lessons\images\\bird small.jpg")
+image=Image.open(image_path)
 
 
 #image=Image.open("Lessons\images\green.jpg")
@@ -68,9 +72,10 @@ def sharpenImage(rgb_array):
 
     # Loop through width and height of the image
     processed_pixel = 0
-
+    progress = 0
     # Apply the sharpening filter
     for y in range(1, height - 1):
+        print(f"\rProgress: {progress:.2f}%", end="")
         for x in range(1, width - 1):
             for c in range(3):  # Loop through RGB channels
                 value = 0
@@ -82,7 +87,7 @@ def sharpenImage(rgb_array):
             processed_pixel = processed_pixel + 1
              # Print process in percentage in interger in same line for replacement of previous progress value in same line
             progress = processed_pixel / total_pixels * 100
-            print(f"\rProgress: {progress:.2f}%", end="")
+            
 
     # Get end date and time into variable
     end_time = datetime.datetime.now()
