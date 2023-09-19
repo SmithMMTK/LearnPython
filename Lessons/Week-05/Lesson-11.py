@@ -33,7 +33,7 @@ blurred_image = np.zeros((height, width), dtype=np.uint8)
 # Loop through the array in x, y coordinates
 for y in range(0, height):
     for x in range(0, width) :
-# Loop through the array in x, y coordinates to display focus area in red
+        # Print the value of the array at x, y coordinates in RED color
         for y1 in range(0, height) :
             for x1 in range(0, width):
                 # Check if the current cell is [y][x]

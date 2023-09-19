@@ -6,10 +6,14 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 import datetime
+import os
+
+
+# Define the path of the image file
+image_path = os.path.join("Lessons","images", "bird small.jpg")
 
 # Open the image file name "bird.jpg" from the subfolder "Lessons\Lesson-01 Image Processing"
-image=Image.open("Lessons\images\\bird small.jpg")
-
+image=Image.open(image_path)
 
 #image=Image.open("Lessons\images\green.jpg")
 
