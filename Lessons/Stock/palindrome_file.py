@@ -1,53 +1,46 @@
-def is_palindrome(word):
+def remove_special_characters(input_string):
+    # Define a list of special characters to remove
+    special_characters = ['.', ',', "'", '"', '?', '!']
 
-    # if word is 'a' return False
-    if len(word) == 1:
-        return False
+    # Remove spaces and convert to lowercase
+    input_string = input_string.replace(" ", "").lower()
 
-    # Remove spaces and convert to lowercase for case-insensitive comparison
-    word = word.replace(" ", "").lower()
+    # Remove special characters
+    for char in special_characters:
+        input_string = input_string.replace(char, '')
 
-    word = word.lower()
-    filtered_word = ''
+    return input_string
 
-    for char in word:
-        if char not in (' ', ',', '.', '!', '?', '"', "'", ';', ':', '-'):
-            filtered_word += char
+def is_palindrome(input_string):
 
-    # Initialize variables for the forward and backward words
-    forward = filtered_word
+
+    
+    # Initialize variables for the forward and backward strings
+    forward = input_string
     backward = ""
 
-    # Reverse the word
-    for char in filtered_word:
+    # Reverse the string
+    for char in input_string:
         backward = char + backward
 
-    # Check if the word is equal to its reverse
-
-    if forward == '':
+    # Check if the string is equal to its reverse
+    if len(forward) <= 1:
         return False
     else:
         return forward == backward
 
-# Input file name
-file_name = input("Enter the name of the file: ")
+# Input text
+words = """
+Madam Arora taught us about the beauty palindromes. She said, 'A man, a plan, a canal, Panama!' with a smile. We marveled at words like 'radar,' 'level,' and 'deified,' each a symmetrical gem. Palindromes are fascinating because they read the same forwards and backwards. Racecar drivers, radar technicians, and civic leaders all appreciate their elegance. Some even argue that palindromes hold secret wisdom, like 'Evil is a name a foeman, as I live,' which is a poetic way to ponder the duality life. So, whether you're in a kayak, on a civic duty, or simply enjoying the serenity a palindrome, remember that linguistic marvels are all around us. This passage contains several palindromes, including words like madam A man, a plan, a canal, Panama," "radar," "level," "deified," "racecar," "civic," and "Evil is a name a foeman, as I live. These palindromes add a touch linguistic charm and symmetry to the text.
+"""
 
-try:
-    with open(file_name, 'r') as file:
-        found_palindromes = []
-        line_number = 1
+found_palindromes = []
 
-        for line in file:
-            # Split the line into words
-            words = line.split()
-            
-            for word in words:
-                if is_palindrome(word):
-                    found_palindromes.append((line_number, word))
-                    print(f"Found a palindrome '{word}' in line {line_number}")
-                line_number += 1
+# Split the input text into words
+word_list = words.split()
 
-except FileNotFoundError:
-    print(f"File '{file_name}' not found.")
-except Exception as e:
-    print(f"An error occurred: {e}")
+for word in word_list:
+    word = remove_special_characters(word)
+    if is_palindrome(word):
+        found_palindromes.append(word)
+        print(f"Found a palindrome '{word}'")
