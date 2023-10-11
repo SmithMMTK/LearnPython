@@ -1,17 +1,33 @@
 def is_palindrome(word):
+
+    # if word is 'a' return False
+    if len(word) == 1:
+        return False
+
     # Remove spaces and convert to lowercase for case-insensitive comparison
     word = word.replace(" ", "").lower()
 
+    word = word.lower()
+    filtered_word = ''
+
+    for char in word:
+        if char not in (' ', ',', '.', '!', '?', '"', "'", ';', ':', '-'):
+            filtered_word += char
+
     # Initialize variables for the forward and backward words
-    forward = word
+    forward = filtered_word
     backward = ""
 
     # Reverse the word
-    for char in word:
+    for char in filtered_word:
         backward = char + backward
 
     # Check if the word is equal to its reverse
-    return forward == backward
+
+    if forward == '':
+        return False
+    else:
+        return forward == backward
 
 # Input file name
 file_name = input("Enter the name of the file: ")
