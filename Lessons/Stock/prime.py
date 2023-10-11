@@ -6,6 +6,9 @@ def is_prime(n):
 
     if n % 2 == 0:
         return False
+    
+    if n % 3 == 0:
+        return False
 
     for i in range(5, n):
         if n % i == 0:
@@ -26,6 +29,6 @@ def find_primes(upper_limit):
     return primes
 
 # Example usage:
-upper_limit = 30
+upper_limit = 300
 prime_numbers = find_primes(upper_limit)
 print("Prime numbers up to", upper_limit, "are:", prime_numbers)
