@@ -3,7 +3,7 @@ def remove_special_characters(input_string):
     special_characters = ['.', ',', "'", '"', '?', '!']
 
     # Remove spaces and convert to lowercase
-    input_string = input_string.replace(" ", "").lower()
+    input_string = input_string.lower()
 
     # Remove special characters
     for char in special_characters:
@@ -11,10 +11,9 @@ def remove_special_characters(input_string):
 
     return input_string
 
+
 def is_palindrome(input_string):
-
-
-    
+   
     # Initialize variables for the forward and backward strings
     forward = input_string
     backward = ""
