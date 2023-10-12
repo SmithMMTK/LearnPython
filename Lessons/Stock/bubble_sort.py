@@ -28,7 +28,8 @@ def bubble_sort(arr):
         for j in range(0, n-i-1):
             # Display the array with the current element highlighted in Red and the next element highlighted in Green
             display(arr, j, j+1,n-i-1)
-            print()
+            print("Press any key to swap ...") 
+            getch.getch()
 
             # Swap if the element found is greater than the next element
             debug_j = arr[j]
@@ -39,7 +40,10 @@ def bubble_sort(arr):
             
             display(arr, j+1, j,n-i-1)
             print()
+            print()
+            print("Press any key to continue...") 
             getch.getch()
+            
             print()
         # If no two elements were swapped in the inner loop, the array is already sorted
         if not swapped:
