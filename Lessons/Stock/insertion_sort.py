@@ -40,14 +40,18 @@ def insertion_sort(arr):
         j = i - 1
         while j >= 0 and current_element < arr[j]:
             print("Compare ", current_element, " with ", arr[j], ".")
+            display(arr, j+1, j)
             arr[j + 1] = arr[j]
             print("*** Put ", arr[j], " to the right.")
             display(arr, j+1, j)
+            print("Move to next element.")
+            display(arr, j, j-1)
             
             j -= 1
 
         # Insert current_element into its correct position
         arr[j + 1] = current_element
+        print("current_element: ", current_element, " is in the right place.")
         print("*** Put ", current_element, " to the position: ",j+1)
         display(arr, j+1, j+1)
         print("Move to next element.")

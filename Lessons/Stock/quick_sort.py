@@ -39,7 +39,7 @@ def quick_sort(arr, low, high):
         while True:
             print("**********************")
             print("\nFind the elecment in left side array that higher than pivot_value : ",pivot_value)
-            print("Pivot_index: ", pivot_index, " Pivot_value: ", pivot_value)
+            #print("Pivot_index: ", pivot_index, " Pivot_value: ", pivot_value)
             while left <= right and arr[left] < pivot_value:
                 print("=====================")
                 print("Left: ", left, " Right: ", right)
@@ -55,7 +55,7 @@ def quick_sort(arr, low, high):
            
             print("")
             print("\nFind the element in the right side array that lower than pivot_value : ",pivot_value)
-            print("Pivot_index: ", pivot_index, " Pivot_value: ", pivot_value)
+            #print("Pivot_index: ", pivot_index, " Pivot_value: ", pivot_value)
             while left <= right and arr[right] > pivot_value:
                 print("=====================")
                 print("Left: ", left, " Right: ", right)
@@ -71,7 +71,7 @@ def quick_sort(arr, low, high):
 
             if left <= right:
                 print("=====================")
-                print("Check if left <= right")
+                print("Yes, left pointer is less than or equal to right pointer.")
                 print("left = ", left, " right = ", right)
                 # Swap the elements at left and right
                 arr[left], arr[right] = arr[right], arr[left]
@@ -91,7 +91,9 @@ def quick_sort(arr, low, high):
         pivot_index = left
 
         # Recursively sort the sub-arrays
+        print("\n ******** Recursively sort the sub-arrays from left to pivot_index - 1 ", left, " to ", pivot_index - 1)
         quick_sort(arr, low, pivot_index - 1)
+        print("\n ******** Recursively sort the sub-arrays from pivot_index + 1 to right", pivot_index + 1, " to ", right)
         quick_sort(arr, pivot_index + 1, high)
 
 # Example usage (same as before):
