@@ -41,11 +41,6 @@ def displayCoordinates(stdscr, x, y, max_x, max_y,turn,length, gameMode):
         stdscr.addstr(max_y-1, i, "▓", curses.color_pair(2))
 
 
-    ## Show another information
-    #
-    #
-    #
-
 # Display Game Title and instruction
 def displayGameTitle(stdscr, max_x, max_y):
 
@@ -113,6 +108,13 @@ def main(stdscr):
     curses.curs_set(0)  # Hide the cursor
     stdscr.clear()
 
+    # Get the screen dimensions
+    max_y, max_x = stdscr.getmaxyx()
+   
+
+    # Refresh the screen to see the window
+    stdscr.refresh()
+
     # Enable color mode
     curses.start_color()
 
@@ -149,8 +151,7 @@ def main(stdscr):
     # Because the first time the program run, it will display the prompt and instructions to the user
     firstTime = True
     
-    # Get the screen dimensions
-    max_y, max_x = stdscr.getmaxyx()
+
 
     # THINGTIME : Time in milliseconds to wait for user input otherwise move the prompt to the current direction
     THINGTIME = 150
