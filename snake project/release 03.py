@@ -5,7 +5,7 @@
 # Add innertia to the prompt
 
 import curses
-import random
+
 
 ## Define constants
 # Time in milliseconds to wait for user input

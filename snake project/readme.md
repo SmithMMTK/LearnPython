@@ -1,9 +1,13 @@
+# Snake project
+
+## Part 01
+```python
 # 
 # Create canvas and move a prompt around
 # 
 
 import curses
-import random
+
 
 def main(stdscr):
     # Initialize curses
@@ -13,10 +17,8 @@ def main(stdscr):
     # Initial position of the prompt
     x, y = 0, 0
 
-
     firstTime = True
         
-
     while True:
         
         # Get the screen dimensions
@@ -43,14 +45,16 @@ def main(stdscr):
         # Handle user input
         if key == ord('q'):
             break
-        elif key == curses.KEY_RIGHT and x < max_x - 1:
-            x += 1
-        elif key == curses.KEY_LEFT and x > 0:
-            x -= 1
-        elif key == curses.KEY_DOWN and y < max_y - 1:
-            y += 1
-        elif key == curses.KEY_UP and y > 0:
-            y -= 1
+        elif key == curses.KEY_RIGHT and {validation}:
+            {action}
+        elif key == curses.KEY_LEFT and {validation}::
+            {action}
+        elif key == curses.KEY_DOWN and {validation}::
+            {action}
+        elif key == curses.KEY_UP and {validation}::
+            {action}
 
 if __name__ == "__main__":
     curses.wrapper(main)
+
+```

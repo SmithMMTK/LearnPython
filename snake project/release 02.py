@@ -5,7 +5,7 @@
 # 
 
 import curses
-import random
+
 
 
 

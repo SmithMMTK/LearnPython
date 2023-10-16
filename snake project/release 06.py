@@ -11,7 +11,7 @@
 #
 
 import curses
-import random
+
 
 ######################
 ## Define constants ##

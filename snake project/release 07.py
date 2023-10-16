@@ -11,7 +11,7 @@
 # Add GAME LEVEL
 
 import curses
-import random
+
 
 
 ######################

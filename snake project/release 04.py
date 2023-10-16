@@ -6,7 +6,7 @@
 # Add Tail to the prompt every TURN_TIME
 
 import curses
-import random
+
 
 ## Define constants
 # Time in milliseconds to wait for user input
