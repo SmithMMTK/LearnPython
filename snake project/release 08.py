@@ -152,7 +152,9 @@ def main(stdscr):
     turnHistory = []
     turnHistory.append([x,y])
     turnTime = -1
+
     
+
     # First time flag
     # Because the first time the program run, it will display the prompt and instructions to the user
     firstTime = True
@@ -247,7 +249,7 @@ def main(stdscr):
             #stdscr.clear()
             stdscr.timeout(-1) 
             stdscr.addstr(max_y-1, 0, "You hit the tail of the snake ! (Press 'r' to restart or 'q' to quit)...")
-            stdscr.refresh()
+            #stdscr.refresh()
             while True:
                 key = stdscr.getch()
                 if key == ord('q'):
@@ -334,7 +336,7 @@ def main(stdscr):
             #stdscr.clear()
             stdscr.timeout(-1) 
             stdscr.addstr(max_y-1, 0, "You hit the edge of the screen! (Press 'r' to restart or 'q' to quit)...")
-            stdscr.refresh()
+            #stdscr.refresh()
             # While loop to wait until user press q
             while True:
                 key = stdscr.getch()
