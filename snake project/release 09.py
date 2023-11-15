@@ -14,6 +14,8 @@
 
 import curses
 import random
+import datetime
+import time
 
 
 
@@ -188,6 +190,9 @@ def main(stdscr):
         turnTime += 1
         turnFruit += 1
 
+        # Defined the start time of this turn
+        startTime = datetime.datetime.now()
+
         # Add a new fruit to the game every FRUITTURN
         #if (turnFruit == FRUITTURN) and (not fruiteMode):
         if (turnFruit == FRUITTURN):
@@ -333,8 +338,18 @@ def main(stdscr):
             elif key == curses.KEY_UP:
                 y -= 1
                 moveDirection = "UP"
-                   
-        
+            
+            # get current time of the turn
+            currentTime = datetime.datetime.now()
+
+            # Calculate the time elapsed since the start of the turn
+            timeElapsed = (currentTime - startTime).total_seconds() * 1000
+            
+            # If timeElapsed is less than THINGTIME, wait for the remaining time
+            if timeElapsed < THINGTIME:
+                delayTime = THINGTIME - timeElapsed
+                time.sleep(delayTime/1000)
+            
         # Check if the prompt is at the edge of the screen
         if promptIsOutbound(x, y, max_x, max_y):
             #stdscr.clear()
