@@ -17,6 +17,6 @@ def run_length_encoding(input_string):
     return compressed_string
 
 # Test the function
-input_string = "aaabbbbcccccddddddde"
+input_string = "abbbbcccccddddddde"
 compressed_result = run_length_encoding(input_string)
 print(compressed_result)
