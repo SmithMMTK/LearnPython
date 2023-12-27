@@ -2,10 +2,6 @@ import random
 import sys
 
 
-
-
-
-
 def bubble_sort(arr):
     n = len(arr)
 
