@@ -52,7 +52,7 @@ def bubble_sort(arr):
     print("Sorting complete.")
   
 # Example usage (same as before):
-total_number = 10
+total_number = 6
 my_list = random.sample(range(1, 100), total_number)
 
 print("\nOriginal list:")
