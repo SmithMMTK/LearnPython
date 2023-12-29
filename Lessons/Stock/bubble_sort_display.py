@@ -52,8 +52,9 @@ def bubble_sort(arr):
     print("Sorting complete.")
   
 # Example usage (same as before):
-total_number = 6
+total_number = 99
 my_list = random.sample(range(1, 100), total_number)
+#my_list = [6, 1, 2, 3, 4, 5]
 
 print("\nOriginal list:")
 print(my_list)

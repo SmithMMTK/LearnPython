@@ -59,7 +59,7 @@ def insertion_sort(arr):
         input("")
 
 # Example usage (same as before):
-total_number = 10
+total_number = 99
 my_list = random.sample(range(1, 100), total_number)
 
 print("Original list:")

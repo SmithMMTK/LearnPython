@@ -17,9 +17,9 @@ def bubble_sort(arr):
            break
   
 # Example usage (same as before):
-total_number = 10
+total_number = 99
 my_list = random.sample(range(1, 100), total_number)
-my_list = [1,2,3,4,5,6,7,8,9,10]
+#my_list = [1,2,3,4,5,6,7,8,9,10]
 
 print("\nOriginal list:")
 print(my_list)
