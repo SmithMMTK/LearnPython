@@ -195,3 +195,58 @@ GROUP BY
 ORDER BY
     C.CustomerID;
 ```
+
+---
+Bad
+```sql
+SELECT
+    P.ProductID,
+    P.ProductName,
+    C.CustomerID,
+    C.FirstName,
+    C.LastName,
+    O.Quantity,
+    O.OrderDate,
+    O.TotalAmount
+FROM
+    Product AS P
+JOIN
+    [Order] AS O ON P.ProductID = O.ProductID
+JOIN
+    Customer AS C ON O.CustomerID = C.CustomerID
+WHERE
+    P.ProductName = 'Laptop'
+ORDER BY
+    P.ProductID,
+    O.OrderDate;
+
+```
+
+Optimmum
+```sql
+SELECT
+    P.ProductID,
+    P.ProductName,
+    C.CustomerID,
+    C.FirstName,
+    C.LastName,
+    O.Quantity,
+    O.OrderDate,
+    O.TotalAmount
+FROM
+    Product AS P
+JOIN
+    [Order] AS O ON P.ProductID = O.ProductID
+JOIN
+    Customer AS C ON O.CustomerID = C.CustomerID
+WHERE
+    P.ProductID IN (
+        SELECT ProductID
+        FROM Product
+        WHERE ProductName = 'Laptop'
+    )
+ORDER BY
+    P.ProductID,
+    O.OrderDate;
+
+```
