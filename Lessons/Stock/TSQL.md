@@ -248,5 +248,4 @@ WHERE
 ORDER BY
     P.ProductID,
     O.OrderDate;
-
 ```
