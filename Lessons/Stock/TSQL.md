@@ -25,6 +25,12 @@ VALUES
     (3, 'Bob', 'Johnson', 'bobjohnson@email.com', '555-123-4567', '789 Oak Ave');
 ```
 
+```sql
+UPDATE Customer
+SET PhoneNumber = '123-456-7899'
+WHERE CustomerID = 1;
+```
+
 ---
 
 ```sql
