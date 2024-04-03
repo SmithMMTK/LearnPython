@@ -10,6 +10,6 @@ def fibonacci(n):
     return fib_sequence
 
 # Example usage:
-n = 10  # Change this to generate a different number of Fibonacci numbers
+n = 100  # Change this to generate a different number of Fibonacci numbers
 result = fibonacci(n)
 print(result)
