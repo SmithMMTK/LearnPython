@@ -33,7 +33,8 @@ class BinaryTree:
             self.print_tree(node.left, level + 1)
 
 # Example usage:
-data = [15,10,20,5,12,17,25,3,7,11,13,16,18,23,27]
+# data = [15,10,20,5,12,17,25,3,7,11,13,16,18,23,27]
+data = [9, 18, 1, 7, 2, 4, 16, 8, 7]
 binary_tree = BinaryTree()
 for num in data:
     binary_tree.insert(num)

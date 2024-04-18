@@ -54,5 +54,5 @@ for num in data:
 
 binary_tree.print_tree(binary_tree.root)
 
-print("Find 10: ", binary_tree.find(10))  # Test finding an existing number
+print("Find 10: ", binary_tree.find(7))  # Test finding an existing number
 print("Find 22: ", binary_tree.find(22))  # Test finding a non-existing number
