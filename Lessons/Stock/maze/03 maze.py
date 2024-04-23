@@ -63,6 +63,23 @@ def print_path(path):
         countDown = countDown - 1
         time.sleep(0.1)  # Delay for 0.5 seconds
 
+# Print the steps of the path
+def print_path_result(path):
+
+        
+    for row in range(len(maze)):
+        for col in range(len(maze[0])):
+            # Check if (row, col) is in the path
+            if (row, col) in path:
+                print('\033[92m' + 'P' + '\033[0m', end=' ')
+            else:
+                if maze[row][col] == 1:
+                    print('1', end=' ')  # Unvisited path cells
+                else:
+                    print('0', end=' ')  # Walls
+        print()
+
+
 # Check if the current position is a wall or out of bounds
 def is_valid_position(maze, position):
     # Check if the row is out of bounds
@@ -130,9 +147,10 @@ else:
     for i, path in enumerate(solutions, 1):
         print("Path", i, "and take", len(path), "steps.")
 
-    msg = "Press Enter to view path 1/" + str(len(solutions)) + "\n"
+    #msg = "Press Enter to view path 1/" + str(len(solutions)) + "\n"
+    #print(msg)
 
-    input(msg)  # Wait for user to press Enter
+    #input(msg)  # Wait for user to press Enter
 
 
     print("\n")
@@ -142,15 +160,16 @@ else:
     solutions.sort(key=len)
 
     for path in solutions:
-        print_path(path)
+        print_path_result(path)
         current = current + 1
         if path != solutions[-1]:  # Check if it's not the last path
             msg = "\n Rendering solutions " + str(current) + "/" + str(len(solutions)) + "\n"
             #input(msg)  # Wait for user to press Enter
-            print(msg)
+            #print(msg)
             # Wait 3 seconds before displaying the next path
-            time.sleep(3)
+           # time.sleep(3)
         print("\n")
     print("All solutions have been displayed.")
+
 
 
