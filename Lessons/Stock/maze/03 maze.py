@@ -119,14 +119,14 @@ solve_maze(maze[:], start, end, [], solutions)
 
 # Display all found solutions
 if not solutions:
-    print("No path found.")
+    print("\nNo path found.")
 else:
 
     # Summarize solutions found with sataistics and visualizations
 
     # Summarize solutions found with statistics and visualizations
     total_solutions = len(solutions)
-    print("There are ", total_solutions, "path(s): to solve this maze")
+    print("\nThere are ", total_solutions, "path(s): to solve this maze")
     for i, path in enumerate(solutions, 1):
         print("Path", i, "and take", len(path), "steps.")
 
@@ -137,6 +137,10 @@ else:
 
     print("\n")
     current = 1
+
+    # Sorting solutions from shortest to longest
+    solutions.sort(key=len)
+
     for path in solutions:
         print_path(path)
         current = current + 1
