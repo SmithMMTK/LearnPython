@@ -86,8 +86,8 @@ def solve_maze(maze, current, end, path_previous, solutions):
 
     # Explore all four possible directions: up, right, down, left
     directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
-    for dx, dy in directions:
-        new_pos = (current[0] + dx, current[1] + dy)
+    for row, column in directions:
+        new_pos = (current[0] + row, current[1] + column)
         if is_valid_position(maze, new_pos):
             solve_maze(maze, new_pos, end, path_result, solutions)
 
