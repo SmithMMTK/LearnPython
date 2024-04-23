@@ -14,16 +14,21 @@ def render_maze(maze):
 
 # Test render_maze
 maze = [
-    [1, 0, 0, 0, 1, 1, 0, 0, 0, 1],
-    [1, 1, 1, 0, 1, 0, 0, 1, 0, 1],
-    [0, 1, 0, 0, 1, 1, 1, 1, 0, 0],
-    [0, 1, 0, 1, 1, 0, 0, 1, 1, 1],
-    [0, 1, 1, 1, 0, 1, 1, 1, 0, 1],
-    [0, 0, 0, 1, 0, 1, 0, 0, 1, 1],
-    [1, 1, 0, 1, 1, 1, 0, 1, 1, 0],
-    [0, 1, 1, 1, 0, 1, 0, 1, 0, 1],
-    [1, 1, 0, 1, 0, 1, 1, 1, 1, 1],
-    [0, 0, 0, 1, 1, 0, 0, 0, 1, 1]
+    [1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1],
+    [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1],
+    [0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
+    [1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1],
+    [1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1],
+    [1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1],
+    [1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1],
+    [0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0],
+    [1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1],
+    [1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1],
+    [1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1],
+    [1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+    [1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1]
 ]
 
 #maze = [
@@ -35,6 +40,7 @@ maze = [
 # Print the steps of the path
 def print_path(path):
     # Step through each position in the path
+    countDown = len(path) - 1
     for position in path:
         # Clear the console
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -53,7 +59,9 @@ def print_path(path):
                     else:
                         print('0', end=' ')  # Walls
             print()
-        time.sleep(0.2)  # Delay for 0.5 seconds
+        print("Turns: ", countDown)
+        countDown = countDown - 1
+        time.sleep(0.1)  # Delay for 0.5 seconds
 
 # Check if the current position is a wall or out of bounds
 def is_valid_position(maze, position):
@@ -118,7 +126,7 @@ else:
 
     # Summarize solutions found with statistics and visualizations
     total_solutions = len(solutions)
-    print("Found", total_solutions, "path(s):")
+    print("There are ", total_solutions, "path(s): to solve this maze")
     for i, path in enumerate(solutions, 1):
         print("Path", i, "and take", len(path), "steps.")
 
@@ -133,8 +141,11 @@ else:
         print_path(path)
         current = current + 1
         if path != solutions[-1]:  # Check if it's not the last path
-            msg = "Press Enter to view path " + str(current) + "/" + str(len(solutions)) + "\n"
-            input(msg)  # Wait for user to press Enter
+            msg = "\n Rendering solutions " + str(current) + "/" + str(len(solutions)) + "\n"
+            #input(msg)  # Wait for user to press Enter
+            print(msg)
+            # Wait 3 seconds before displaying the next path
+            time.sleep(3)
         print("\n")
     print("All solutions have been displayed.")
 
