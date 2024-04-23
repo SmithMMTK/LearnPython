@@ -114,12 +114,18 @@ if not solutions:
     print("No path found.")
 else:
 
-    print("Found ", len(solutions), " path(s):")
+    # Summarize solutions found with sataistics and visualizations
+
+    # Summarize solutions found with statistics and visualizations
+    total_solutions = len(solutions)
+    print("Found", total_solutions, "path(s):")
+    for i, path in enumerate(solutions, 1):
+        print("Path", i, "and take", len(path), "steps.")
+
     msg = "Press Enter to view path 1/" + str(len(solutions)) + "\n"
 
     input(msg)  # Wait for user to press Enter
 
-    # Display input
 
     print("\n")
     current = 1
@@ -130,5 +136,6 @@ else:
             msg = "Press Enter to view path " + str(current) + "/" + str(len(solutions)) + "\n"
             input(msg)  # Wait for user to press Enter
         print("\n")
+    print("All solutions have been displayed.")
 
 
