@@ -38,7 +38,7 @@ def print_path(path):
         
         for row in range(len(maze)):
             for col in range(len(maze[0])):
-                if [row, col] == position:
+                if (row, col) == position:
                     print('\033[92m' + 'P' + '\033[0m', end=' ')
                 else:
                     if maze[row][col] == 1:
@@ -53,9 +53,9 @@ start = (0, 0)
 end = (9, 9)
 
 # Define array to store the path
-path = [[0, 0], [1, 0], [1,1],[2,1],[3,1],[4,1]]  # Dummy path for demonstration
+path = [(0, 0), (1, 0), (1,1),(2,1),(3,1),(4,1)]  # Dummy path for demonstration
 
-
+# render_maze(maze)
 
 print_path(path)
 
