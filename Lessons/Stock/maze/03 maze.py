@@ -144,6 +144,10 @@ else:
     # Summarize solutions found with statistics and visualizations
     total_solutions = len(solutions)
     print("\nThere are ", total_solutions, "path(s): to solve this maze")
+
+    # Sorting solutions from shortest to longest
+    solutions.sort(key=len)
+
     for i, path in enumerate(solutions, 1):
         print("Path", i, "and take", len(path), "steps.")
 
@@ -156,8 +160,7 @@ else:
     print("\n")
     current = 1
 
-    # Sorting solutions from shortest to longest
-    solutions.sort(key=len)
+   
 
     for path in solutions:
         print_path_result(path)
