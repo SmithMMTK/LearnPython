@@ -135,7 +135,7 @@ path = []
 render_maze(maze)
 
 # Call the solve_maze function
-path = solve_maze(maze[:], (0,0), end, path)
+path = solve_maze(maze, (0,0), end, path)
 
 print_path(path)
 

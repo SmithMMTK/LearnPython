@@ -132,7 +132,7 @@ end = (len(maze) - 1, len(maze[0]) - 1)
 solutions = []
 
 # Start the maze solving process
-solve_maze(maze[:], start, end, [], solutions)
+solve_maze(maze, start, end, [], solutions)
 
 # Display all found solutions
 if not solutions:
