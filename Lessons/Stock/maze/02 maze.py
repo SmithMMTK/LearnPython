@@ -55,6 +55,22 @@ def print_path(path):
             print()
         time.sleep(0.5)  # Delay for 0.5 seconds
 
+# Print the steps of the path
+def print_path_result(path):
+
+        
+    for row in range(len(maze)):
+        for col in range(len(maze[0])):
+            # Check if (row, col) is in the path
+            if (row, col) in path:
+                print('\033[92m' + 'P' + '\033[0m', end=' ')
+            else:
+                if maze[row][col] == 1:
+                    print('1', end=' ')  # Unvisited path cells
+                else:
+                    print('0', end=' ')  # Walls
+        print()
+
 # Check if the current position is a wall or out of bounds
 def is_valid_position(maze, position):
     # Check if the row is out of bounds
@@ -134,8 +150,12 @@ path = []
 
 render_maze(maze)
 
+print("\nStart solving the maze...\n")
+
 # Call the solve_maze function
 path = solve_maze(maze, (0,0), end, path)
 
-print_path(path)
-
+if path:
+    print_path_result(path)
+else:
+    print("No path found")

@@ -48,6 +48,22 @@ def print_path(path):
             print()
         time.sleep(0.5)  # Delay for 0.5 seconds
 
+# Print the steps of the path
+def print_path_result(path):
+
+        
+    for row in range(len(maze)):
+        for col in range(len(maze[0])):
+            # Check if (row, col) is in the path
+            if (row, col) in path:
+                print('\033[92m' + 'P' + '\033[0m', end=' ')
+            else:
+                if maze[row][col] == 1:
+                    print('1', end=' ')  # Unvisited path cells
+                else:
+                    print('0', end=' ')  # Walls
+        print()
+
 # Define the start and end points
 start = (0, 0)
 end = (9, 9)
