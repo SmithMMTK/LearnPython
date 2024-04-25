@@ -116,6 +116,40 @@ def solve_maze(maze, current, end, path_previous, solutions):
         if is_valid_position(maze, new_pos):
             solve_maze(maze, new_pos, end, path_result, solutions)
 
+def canShortenSol1(path):
+    """
+    Determines if any position in the given path has at least three adjacent positions that are also part of the path,
+    suggesting that the path may be shortened.
+
+    Parameters:
+        path (list of tuples): List of positions in the path, where each position is a tuple (row, col).
+
+    Returns:
+        bool: True if the path can potentially be shortened, otherwise False.
+    """
+    # Loop through each position in the path except the last one
+    for turn in range(len(path) - 1):
+        y, x = path[turn]
+        
+        # Define positions of adjacent cells
+        adjacent_positions = [
+            (y - 1, x),  # Up
+            (y + 1, x),  # Down
+            (y, x - 1),  # Left
+            (y, x + 1)   # Right
+        ]
+        
+
+        # Count how many adjacent positions are also in the path
+        count = sum(1 for pos in adjacent_positions if pos in path)
+        
+        # Check if three or more adjacent positions are part of the path
+        if count >= 3:
+            return True
+    
+    return False
+
+
 
 # Define the start and end points of the maze
 start = (0, 0)
@@ -132,7 +166,15 @@ if not solutions:
     print("\nNo path found.")
 else:
 
-    # Summarize solutions found with sataistics and visualizations
+    # Check if the path can be shortened
+    count = 0
+    finalSolutions = []
+    for path in solutions:
+        if count == 3:
+            xx = 0
+        if not canShortenSol1(path):
+            finalSolutions.append(count)
+        count = count + 1
 
     # Summarize solutions found with statistics and visualizations
     total_solutions = len(solutions)
@@ -153,11 +195,15 @@ else:
     print("\n")
     current = 1
 
-   
+
 
     for path in solutions:
+
         print_path_result(path)
-        current = current + 1
+        
+        
+        if current == 2:
+            i = 1
         if path != solutions[-1]:  # Check if it's not the last path
             msg = "\n Rendering solutions " + str(current) + "/" + str(len(solutions)) + "\n"
             #input(msg)  # Wait for user to press Enter
