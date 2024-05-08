@@ -73,5 +73,5 @@ path = [(0, 0), (1, 0), (1,1),(2,1),(3,1),(4,1)]  # Dummy path for demonstration
 
 # render_maze(maze)
 
-print_path(path)
-
+#print_path(path)
+print_path_result(path)
