@@ -15,7 +15,7 @@ def render_maze(maze):
 # Test render_maze
 maze = [
     [1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
     [1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1],
     [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1],
     [0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
@@ -117,38 +117,36 @@ def solve_maze(maze, current, end, path_previous, solutions):
             solve_maze(maze, new_pos, end, path_result, solutions)
 
 def canShortenSol1(path):
-    """
-    Determines if any position in the given path has at least three adjacent positions that are also part of the path,
-    suggesting that the path may be shortened.
-
-    Parameters:
-        path (list of tuples): List of positions in the path, where each position is a tuple (row, col).
-
-    Returns:
-        bool: True if the path can potentially be shortened, otherwise False.
-    """
-    # Loop through each position in the path except the last one
+    
+    # Loop through each position x,y in the path
     for turn in range(len(path) - 1):
         y, x = path[turn]
         
-        # Define positions of adjacent cells
-        adjacent_positions = [
+        # Calculate the eight possible directions: up, down, left, right, and diagonals
+        possible_directions = [
             (y - 1, x),  # Up
+            (y - 1, x + 1),  # Up-right
+            (y, x + 1),  # Right
+            (y + 1, x + 1),  # Down-right
             (y + 1, x),  # Down
+            (y + 1, x - 1),  # Down-left
             (y, x - 1),  # Left
-            (y, x + 1)   # Right
+            (y - 1, x - 1)  # Up-left
         ]
-        
 
-        # Count how many adjacent positions are also in the path
-        count = sum(1 for pos in adjacent_positions if pos in path)
+        # Count toward position in the path from current position + 1 and then count the number of steps match with possible_directions
+        # starting from for loop
+        count = 0
+        for pos in path[turn:]:
+            if pos in possible_directions:
+                count = count + 1
+
         
         # Check if three or more adjacent positions are part of the path
         if count >= 3:
             return True
     
     return False
-
 
 
 # Define the start and end points of the maze
@@ -170,15 +168,14 @@ else:
     count = 0
     finalSolutions = []
     for path in solutions:
-        if count == 3:
-            xx = 0
+
         if not canShortenSol1(path):
-            finalSolutions.append(count)
-        count = count + 1
+            finalSolutions.append(path)
+
 
     # Summarize solutions found with statistics and visualizations
     total_solutions = len(solutions)
-    print("\nThere are ", total_solutions, "path(s): to solve this maze")
+    print("\nThere are ", total_solutions, "all path(s): to solve this maze")
 
     # Sorting solutions from shortest to longest
     solutions.sort(key=len)
@@ -186,31 +183,37 @@ else:
     for i, path in enumerate(solutions, 1):
         print("Path", i, "and take", len(path), "steps.")
 
-    #msg = "Press Enter to view path 1/" + str(len(solutions)) + "\n"
-    #print(msg)
+    print("\n")
+    current = 1
 
-    #input(msg)  # Wait for user to press Enter
+    for path in solutions:
+        print_path_result(path)
+        if path != solutions[-1]:  # Check if it's not the last path
+            msg = "\n Rendering all solutions " + str(current) + "/" + str(len(solutions)) + "\n"
+        print("\n")
 
+    
+
+    # Summarize solutions found with statistics and visualizations
+    total_solutions = len(finalSolutions)
+    print("\nThere are ", total_solutions, "optimized path(s): to solve this maze")
+
+    # Sorting solutions from shortest to longest
+    finalSolutions.sort(key=len)
+
+    for i, path in enumerate(finalSolutions, 1):
+        print("Path", i, "and take", len(path), "steps.")
 
     print("\n")
     current = 1
 
-
-
-    for path in solutions:
-
+    for path in finalSolutions:
         print_path_result(path)
-        
-        
-        if current == 2:
-            i = 1
-        if path != solutions[-1]:  # Check if it's not the last path
-            msg = "\n Rendering solutions " + str(current) + "/" + str(len(solutions)) + "\n"
-            #input(msg)  # Wait for user to press Enter
-            #print(msg)
-            # Wait 3 seconds before displaying the next path
-           # time.sleep(3)
+        if path != finalSolutions[-1]:  # Check if it's not the last path
+            msg = "\n Rendering optimized solutions " + str(current) + "/" + str(len(finalSolutions)) + "\n"
         print("\n")
+
+    
     print("All solutions have been displayed.")
 
 
