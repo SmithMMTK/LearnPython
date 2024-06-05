@@ -14,22 +14,23 @@ def render_maze(maze):
 
 # Test render_maze
 maze = [
-    [1, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1],
-    [1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1],
-    [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1],
-    [0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-    [1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1],
-    [1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1],
-    [1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1],
-    [1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1],
-    [0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0],
-    [1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 1],
-    [1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1],
-    [1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1],
+    [1, 2, 1, 3, 1, 0, 1, 0, 1, 1, 1, 1, 4, 1, 1],
+    [1, 1, 0, 0, 1, 0, 2, 0, 1, 0, 1, 0, 1, 0, 1],
+    [1, 0, 3, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1],
+    [1, 2, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1],
+    [0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 2, 0, 1, 0, 1],
+    [1, 5, 1, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1],
+    [1, 1, 2, 1, 0, 1, 1, 1, 0, 3, 0, 0, 1, 0, 1],
+    [1, 0, 0, 2, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 1],
+    [1, 1, 0, 1, 0, 2, 0, 1, 1, 1, 1, 0, 0, 0, 1],
+    [0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 3, 1, 1, 0],
+    [1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 2, 1, 1],
+    [1, 0, 1, 1, 0, 2, 0, 0, 1, 1, 0, 0, 1, 0, 1],
+    [1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 3],
     [1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
-    [1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1]
+    [1, 0, 1, 1, 1, 2, 1, 1, 0, 0, 1, 1, 3, 1, 1]
 ]
+
 
 #maze = [
 #    [1,1,1],
@@ -71,10 +72,10 @@ def print_path_result(path):
         for col in range(len(maze[0])):
             # Check if (row, col) is in the path
             if (row, col) in path:
-                print('\033[92m' + 'P' + '\033[0m', end=' ')
+                print('\033[92m' + str(maze[row][col]) + '\033[0m', end=' ')
             else:
-                if maze[row][col] == 1:
-                    print('1', end=' ')  # Unvisited path cells
+                if maze[row][col] >= 1:
+                    print(maze[row][col], end=' ')  # Unvisited path cells
                 else:
                     print('0', end=' ')  # Walls
         print()
@@ -181,7 +182,13 @@ else:
     # Add code to calculate the cost of solutions and sort by cost
 
     for i, path in enumerate(solutions, 1):
-        print("Path", i, "and cost", len(path), ".")
+        ## Calculate cost of this path by cost = cost + path[x] and store in variable cost
+        cost = 0
+        for coord in path:
+            cost += maze[coord[0]][coord[1]]
+    
+        # Print the path and its cost
+        print("Path", i, "and cost", cost)
 
     print("\n")
     current = 1
@@ -191,7 +198,3 @@ else:
         if path != solutions[-1]:  # Check if it's not the last path
             msg = "\n Rendering all solutions " + str(current) + "/" + str(len(solutions)) + "\n"
         print("\n")
-
-    
-
-
