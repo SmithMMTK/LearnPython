@@ -32,6 +32,8 @@ maze = [
 ]
 
 
+
+
 #maze = [
 #    [1,1,1],
 #    [1,1,1],
@@ -181,6 +183,10 @@ else:
     # Sorting solutions from shortest to longest
     # Add code to calculate the cost of solutions and sort by cost
 
+    # Create two dimention array to store the cost of each path and index of the path
+    costPath = []
+
+
     for i, path in enumerate(solutions, 1):
         ## Calculate cost of this path by cost = cost + path[x] and store in variable cost
         cost = 0
@@ -188,13 +194,34 @@ else:
             cost += maze[coord[0]][coord[1]]
     
         # Print the path and its cost
-        print("Path", i, "and cost", cost)
+        # print("Path", i, "and cost", cost)
+
+        # Store the cost and index of the path in costPath including the length of the path
+        costPath.append([cost, i, len(path)])
+
 
     print("\n")
-    current = 1
+    # Sorting the costPath array by cost
+    costPath.sort()
 
-    for path in solutions:
-        print_path_result(path)
-        if path != solutions[-1]:  # Check if it's not the last path
-            msg = "\n Rendering all solutions " + str(current) + "/" + str(len(solutions)) + "\n"
+    print("Sorted by cost")
+    print("\n")
+    for cost, index, pathLen in costPath:
+        print("Path", index, "is cost", cost, "and take", pathLen, "steps.")
+    
+    print("\n")
+
+    # Print the solution path from the costPath array
+    for cost, index, PathLen in costPath:
+        print_path_result(solutions[index - 1])
         print("\n")
+
+    # Print the path with cost
+    #for cost, index in costPath:
+    #    print("Path", index, "and cost", cost)
+
+    #for path in solutions:
+    #    print_path_result(path)
+    #    if path != solutions[-1]:  # Check if it's not the last path
+    #        msg = "\n Rendering all solutions " + str(current) + "/" + str(len(solutions)) + "\n"
+    #    print("\n")
