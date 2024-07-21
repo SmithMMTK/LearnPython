@@ -29,5 +29,3 @@ def sqrRoot(target):
 
 target = 10
 answer = sqrRoot(target)
-
-#print(sqrRoot(target, current, left, right))
