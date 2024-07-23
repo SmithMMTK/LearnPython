@@ -27,5 +27,5 @@ def sqrRoot(target):
     # Check the digit length of current
 
 
-target = 10
+target = 157
 answer = sqrRoot(target)
