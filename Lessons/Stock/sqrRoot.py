@@ -27,7 +27,7 @@ def sqrRoot(target):
     # Check the digit length of current
 
 
-target = 157
+target = 1
 answer = sqrRoot(target)
 
 print("The square root of", target, "is", answer)
